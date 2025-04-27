@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Administrador</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Administrador</h1>
+  <h2 id="bienvenida"></h2>
+
+  <input type="text" id="nuevaSala" placeholder="Nombre de la sala" />
+  <button onclick="crearSala()">Crear Sala</button>
+
+  <h3>Salas disponibles:</h3>
+  <ul id="listaSalas"></ul>
+
+  <script>
+    const socket = io();
+
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get('nombre');
+
+    document.getElementById('bienvenida').innerText = `Bienvenido, ${nombre}`;
+
+    function crearSala() {
+      const sala = document.getElementById('nuevaSala').value;
+      if (sala) {
+        socket.emit('crearSala', sala);
+        document.getElementById('nuevaSala').value = '';
+      }
+    }
+
+    socket.on('salaCreada', (sala) => {
+      const lista = document.getElementById('listaSalas');
+      const item = document.createElement('li');
+      item.innerText = sala;
+      lista.appendChild(item);
+    });
+  </script>
+</body>
+</html>

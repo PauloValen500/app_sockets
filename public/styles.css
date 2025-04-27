@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 30px;
+    background-color: #f0f2f5;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  h2, h3 {
+    color: #555;
+  }
+  
+  form, input, select, button {
+    margin: 10px 0;
+  }
+  
+  input, select {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  #listaSalas {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #listaSalas li {
+    padding: 10px;
+    background-color: white;
+    margin: 5px auto;
+    width: 300px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    transition: background-color 0.2s;
+  }
+  
+  #listaSalas li:hover {
+    background-color: #ddd;
+  }
+  
+  #chat {
+    margin-top: 20px;
+  }
+  
+  #mensajes {
+    text-align: left;
+    padding: 10px;
+    background-color: white;
+    margin: 0 auto;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  

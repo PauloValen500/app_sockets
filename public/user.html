@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuario Normal</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Usuario Normal</h1>
+  <h2 id="bienvenida"></h2>
+
+  <h3>Salas disponibles:</h3>
+  <ul id="listaSalas"></ul>
+
+  <div id="chat" style="display:none;">
+    <h3>Chat en Sala: <span id="nombreSala"></span></h3>
+    <div id="mensajes" style="border: 1px solid black; height: 200px; overflow-y: scroll;"></div>
+    <input type="text" id="mensaje" placeholder="Escribe un mensaje..." />
+    <button onclick="enviarMensaje()">Enviar</button>
+  </div>
+
+  <script>
+    const socket = io();
+
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get('nombre');
+
+    document.getElementById('bienvenida').innerText = `Bienvenido, ${nombre}`;
+
+    let salaActual = '';
+
+    socket.on('salaCreada', (sala) => {
+      const lista = document.getElementById('listaSalas');
+      const item = document.createElement('li');
+      item.innerText = sala;
+      item.style.cursor = 'pointer';
+      item.onclick = () => unirseASala(sala);
+      lista.appendChild(item);
+    });
+
+    function unirseASala(sala) {
+      salaActual = sala;
+      document.getElementById('nombreSala').innerText = sala;
+      document.getElementById('chat').style.display = 'block';
+      document.getElementById('mensajes').innerHTML = '';
+      socket.emit('unirseSala', sala); // 🔥 ahora se llama unirseSala
+    }
+
+    function enviarMensaje() {
+      const mensaje = document.getElementById('mensaje').value;
+      if (mensaje && salaActual) {
+        socket.emit('mensajeSala', { sala: salaActual, mensaje, nombreUsuario: nombre });
+        document.getElementById('mensaje').value = '';
+      }
+    }
+
+    socket.on('nuevoMensaje', ({ mensaje, nombreUsuario }) => {
+      const contenedor = document.getElementById('mensajes');
+      const nuevo = document.createElement('div');
+      nuevo.innerText = `${nombreUsuario}: ${mensaje}`;
+      contenedor.appendChild(nuevo);
+      contenedor.scrollTop = contenedor.scrollHeight;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bienvenido</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Bienvenido a la app de mensajería</h1>
+  
+  <form id="formulario">
+    <input type="text" id="nombre" placeholder="Ingresa tu nombre" required />
+    <br><br>
+    <select id="rol">
+      <option value="admin">Administrador</option>
+      <option value="usuario">Usuario Normal</option>
+    </select>
+    <br><br>
+    <button type="submit">Entrar</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('formulario');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const rol = document.getElementById('rol').value;
+
+      if (rol === 'admin') {
+        window.location.href = `/admin.html?nombre=${nombre}`;
+      } else {
+        window.location.href = `/user.html?nombre=${nombre}`;
+      }
+    });
+  </script>
+</body>
+</html>
