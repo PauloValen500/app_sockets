@@ -1,73 +1,179 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 30px;
-    background-color: #f0f2f5;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  h2, h3 {
-    color: #555;
-  }
-  
-  form, input, select, button {
-    margin: 10px 0;
-  }
-  
-  input, select {
-    padding: 10px;
-    width: 250px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  #listaSalas {
-    list-style: none;
-    padding: 0;
-  }
-  
-  #listaSalas li {
-    padding: 10px;
-    background-color: white;
-    margin: 5px auto;
-    width: 300px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    transition: background-color 0.2s;
-  }
-  
-  #listaSalas li:hover {
-    background-color: #ddd;
-  }
-  
-  #chat {
-    margin-top: 20px;
-  }
-  
-  #mensajes {
-    text-align: left;
-    padding: 10px;
-    background-color: white;
-    margin: 0 auto;
-    width: 300px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
+  font-family: 'Comic Sans MS', 'Marker Felt', cursive;
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, #ffde59, #ff914d);
+  color: #333;
+}
+
+h1 {
+  color: #ff3e6c;
+  text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.5);
+  font-size: 2.5em;
+  transform: rotate(-2deg);
+  margin-bottom: 25px;
+}
+
+h2, h3 {
+  color: #8c52ff;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+  transform: rotate(1deg);
+}
+
+form, input, select, button {
+  margin: 15px 0;
+}
+
+input, select {
+  padding: 12px;
+  width: 280px;
+  border: 3px solid #ff914d;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  font-family: 'Comic Sans MS', 'Marker Felt', cursive;
+  font-size: 1em;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+  transform: scale(1.05);
+  border-color: #ff3e6c;
+  outline: none;
+}
+
+button {
+  padding: 12px 25px;
+  background: linear-gradient(to right, #ff3e6c, #ff914d);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', 'Marker Felt', cursive;
+  font-size: 1.1em;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(255, 62, 108, 0.4);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 62, 108, 0.6);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+#listaSalas {
+  list-style: none;
+  padding: 0;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+#listaSalas li {
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 12px auto;
+  width: 100%;
+  border-radius: 15px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#listaSalas li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background: linear-gradient(to bottom, #ff3e6c, #ff914d);
+}
+
+#listaSalas li:hover {
+  transform: translateY(-5px) scale(1.03);
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+#chat {
+  margin-top: 30px;
+}
+
+#mensajes {
+  text-align: left;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 0 auto;
+  max-width: 350px;
+  width: 100%;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: 300px;
+  overflow-y: auto;
+}
+
+/* Estilos para los mensajes dentro del chat */
+.mensaje {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 15px;
+  max-width: 80%;
+  position: relative;
+}
+
+.mensaje-enviado {
+  background-color: #8c52ff;
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
+}
+
+.mensaje-recibido {
+  background-color: #ff914d;
+  color: white;
+  margin-right: auto;
+  border-bottom-left-radius: 5px;
+}
+
+/* Animaciones */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+h1:hover {
+  animation: bounce 0.5s ease infinite;
+}
+
+/* Estilos adicionales para hacer la aplicación más divertida */
+::selection {
+  background-color: #ff3e6c;
+  color: white;
+}
+
+/* Personalización de la barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ff3e6c, #ff914d);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #8c52ff, #ff3e6c);
+}
