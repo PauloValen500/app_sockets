@@ -1,179 +1,216 @@
-body {
-  font-family: 'Comic Sans MS', 'Marker Felt', cursive;
-  text-align: center;
-  padding: 30px;
-  background: linear-gradient(135deg, #ffde59, #ff914d);
-  color: #333;
+:root {
+  /* Fuentes */
+  --font-fancy: 'Comic Sans MS', 'Marker Felt', cursive;
+
+  /* Colores */
+  --text-main: #333;
+  --bg-gradient-start: #ffde59;
+  --bg-gradient-end: #ff914d;
+  --primary: #ff3e6c;
+  --secondary: #8c52ff;
+  --input-bg: rgba(255, 255, 255, 0.9);
+  --item-bg: rgba(255, 255, 255, 0.8);
+  --border-color: #ff914d;
+  --border-focus: #ff3e6c;
+  --btn-gradient-start: #ff3e6c;
+  --btn-gradient-end: #ff914d;
+  --scrollbar-track: rgba(255, 255, 255, 0.5);
+  --scrollbar-thumb-start: #ff3e6c;
+  --scrollbar-thumb-end: #ff914d;
+  --scrollbar-thumb-hover-start: #8c52ff;
+  --scrollbar-thumb-hover-end: #ff3e6c;
+
+  /* Radios */
+  --radius-base: 15px;
+  --radius-pill: 25px;
+
+  /* Transiciones y sombras */
+  --transition: all 0.3s ease;
+  --shadow-small: 0 5px 10px rgba(0, 0, 0, 0.1);
+  --shadow-btn: 0 5px 15px rgba(255, 62, 108, 0.4);
+  --shadow-btn-hover: 0 8px 20px rgba(255, 62, 108, 0.6);
+
+  /* Animaciones */
+  --anim-bounce-time: 0.5s;
 }
 
+/* RESET */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BASE */
+body {
+  font-family: var(--font-fancy);
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--text-main);
+}
+
+/* ENCABEZADOS */
+h1, h2, h3 {
+  text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.5);
+  transform: rotate(-1deg);
+}
 h1 {
-  color: #ff3e6c;
-  text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.5);
+  color: var(--primary);
   font-size: 2.5em;
   transform: rotate(-2deg);
   margin-bottom: 25px;
 }
-
 h2, h3 {
-  color: #8c52ff;
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+  color: var(--secondary);
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
   transform: rotate(1deg);
 }
 
+/* FORMULARIO */
 form, input, select, button {
   margin: 15px 0;
 }
 
-input, select {
-  padding: 12px;
-  width: 280px;
-  border: 3px solid #ff914d;
-  border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.9);
-  font-family: 'Comic Sans MS', 'Marker Felt', cursive;
+/* CONTROLES */
+input,
+select {
+  font-family: var(--font-fancy);
   font-size: 1em;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  width: 280px;
+  padding: 12px;
+  background-color: var(--input-bg);
+  border: 3px solid var(--border-color);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-small);
+  transition: var(--transition);
 }
-
-input:focus, select:focus {
+input:focus,
+select:focus {
   transform: scale(1.05);
-  border-color: #ff3e6c;
+  border-color: var(--border-focus);
   outline: none;
 }
 
+/* BOTONES */
 button {
-  padding: 12px 25px;
-  background: linear-gradient(to right, #ff3e6c, #ff914d);
-  color: white;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-family: 'Comic Sans MS', 'Marker Felt', cursive;
+  font-family: var(--font-fancy);
   font-size: 1.1em;
   font-weight: bold;
-  box-shadow: 0 5px 15px rgba(255, 62, 108, 0.4);
-  transition: all 0.3s ease;
+  padding: 12px 25px;
+  background: linear-gradient(to right, var(--btn-gradient-start), var(--btn-gradient-end));
+  color: white;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition: var(--transition);
 }
-
 button:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 62, 108, 0.6);
+  box-shadow: var(--shadow-btn-hover);
 }
-
 button:active {
   transform: translateY(1px);
 }
 
+/* LISTADO DE SALAS */
 #listaSalas {
   list-style: none;
   padding: 0;
   max-width: 350px;
   margin: 0 auto;
 }
-
 #listaSalas li {
-  padding: 15px;
-  background-color: rgba(255, 255, 255, 0.8);
-  margin: 12px auto;
-  width: 100%;
-  border-radius: 15px;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  width: 100%;
+  padding: 15px;
+  margin: 12px auto;
+  background-color: var(--item-bg);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-small);
+  transition: var(--transition);
+  cursor: pointer;
 }
-
-#listaSalas li:before {
+#listaSalas li::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 5px;
-  background: linear-gradient(to bottom, #ff3e6c, #ff914d);
+  top: 0; left: 0;
+  width: 5px; height: 100%;
+  background: linear-gradient(to bottom, var(--primary), var(--bg-gradient-end));
 }
-
 #listaSalas li:hover {
   transform: translateY(-5px) scale(1.03);
   background-color: rgba(255, 255, 255, 0.95);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* CHAT */
 #chat {
   margin-top: 30px;
 }
-
 #mensajes {
-  text-align: left;
-  padding: 15px;
-  background-color: rgba(255, 255, 255, 0.8);
-  margin: 0 auto;
   max-width: 350px;
   width: 100%;
-  border-radius: 15px;
-  border: none;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   height: 300px;
+  margin: 0 auto;
+  padding: 15px;
+  text-align: left;
+  background-color: var(--item-bg);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-small);
   overflow-y: auto;
 }
 
-/* Estilos para los mensajes dentro del chat */
+/* MENSAJES */
 .mensaje {
   margin-bottom: 10px;
   padding: 10px;
-  border-radius: 15px;
+  border-radius: var(--radius-base);
   max-width: 80%;
   position: relative;
 }
-
 .mensaje-enviado {
-  background-color: #8c52ff;
-  color: white;
+  background-color: var(--secondary);
+  color: #fff;
   margin-left: auto;
   border-bottom-right-radius: 5px;
 }
-
 .mensaje-recibido {
-  background-color: #ff914d;
-  color: white;
+  background-color: var(--bg-gradient-end);
+  color: #fff;
   margin-right: auto;
   border-bottom-left-radius: 5px;
 }
 
-/* Animaciones */
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-h1:hover {
-  animation: bounce 0.5s ease infinite;
-}
-
-/* Estilos adicionales para hacer la aplicación más divertida */
+/* SELECCIÓN */
 ::selection {
-  background-color: #ff3e6c;
-  color: white;
+  background-color: var(--primary);
+  color: #fff;
 }
 
-/* Personalización de la barra de desplazamiento */
+/* SCROLLBAR */
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--scrollbar-track);
   border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #ff3e6c, #ff914d);
+  background: linear-gradient(to bottom, var(--scrollbar-thumb-start), var(--scrollbar-thumb-end));
   border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #8c52ff, #ff3e6c);
+  background: linear-gradient(to bottom, var(--scrollbar-thumb-hover-start), var(--scrollbar-thumb-hover-end));
+}
+
+/* ANIMACIÓN BOUNCE */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+h1:hover {
+  animation: bounce var(--anim-bounce-time) ease infinite;
 }
